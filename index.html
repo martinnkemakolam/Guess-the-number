@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the number</title>
+</head>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background: #3ed5;
+        margin: 0;
+    }
+
+    .number-display {
+        width: 300px;
+        height: fit-content;
+        background-color: #378543;
+        font-size: 3rem;
+        text-align: center;
+        color: #efefee;
+        margin-bottom: 1rem;
+    }
+
+    .hint {
+        background-color: #378543;
+        font-size: 2rem;
+        padding: .5rem;
+        margin-bottom: 1rem;
+        color: #efa235;
+    }
+
+    input {
+        padding: 1rem 3rem;
+        border: none;
+        outline: none;
+    }
+
+    button {
+        padding: 1rem;
+        background-color: #eee;
+        border: 2px solid #378543;
+        margin-top: 1rem;
+        border-radius: 3rem;
+
+    }
+</style>
+
+<body>
+    <div class="number-display">Guess That Numberrr!!!</div>
+    <div class="hint">
+        The number range is from
+    </div>
+    <input type="number" name="input" id="input" placeholder="what's the number">
+    <button>CHECK</button>
+</body>
+<script>
+    let rand_num_dis = document.getElementsByClassName('number-display')
+    let hint = document.getElementsByClassName('hint')
+    let input = document.getElementsByTagName('input')
+    let btn = document.getElementsByTagName('button')
+    function random_num() {
+        return Math.round(Math.random() * 20)
+    }
+    var rand;
+
+    function range() {
+        rand = random_num()
+        console.log(rand)
+        if (rand < 5) {
+            hint[0].innerHTML = `a little hint: 0 - 5`
+        } else if (rand < 10) {
+            hint[0].innerHTML = `a little hint: 5 - 10`
+        }
+        else if (rand < 15) {
+            hint[0].innerHTML = `a little hint: 10 - 15`
+        } else if (rand < 20) {
+            hint[0].innerHTML = `a little hint: 15 - 20`
+        }
+    }
+
+    btn[0].onclick = () => {
+        console.log(rand)
+        if (input[0].value == rand) {
+            rand_num_dis[0].innerHTML = 'CORRECT :) <br> go again'
+        } else {
+            rand_num_dis[0].innerHTML = 'WRONG!!! <br> try again'
+        }
+        random_num()
+        range()
+    }
+
+
+    range()
+</script>
+
+</html>
